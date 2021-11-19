@@ -126,6 +126,18 @@ results_df %>%
 
 # Problem 2
 
+### Import and tidy data
+
+```{r}
+messy_df =
+  tibble(
+    file = list.files("./data/P2/", full.names = T)) %>%
+    mutate(data = map(file, read_csv)) %>% 
+    unnest(data)
+
+  
+```
+
 
 # Problem 3
 
