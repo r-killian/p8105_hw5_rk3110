@@ -126,18 +126,31 @@ results_df %>%
 
 # Problem 2
 
-### Import and tidy data
-
 ```{r}
-messy_df =
+p2_df =
   tibble(
     file = list.files("./data/P2/", full.names = T)) %>%
     mutate(data = map(file, read_csv)) %>% 
-    unnest(data)
+    unnest(data) %>% 
+    mutate(
+      file = str_remove(file, "\\./data/P2/"),
+      group = str_remove(file, "\\.csv"),
+      id = row_number(),
+      arm = str_remove(group, "_[0-9][0-9]")) %>%
+    pivot_longer(
+      week_1:week_8,
+      names_to = "week",
+      names_prefix = "week_",
+      values_to = "data"
+    ) %>% 
+    select(id, arm, week, data) 
 
-  
+p2_df %>% 
+  ggplot(aes(x = week, y = data, group = id, color = arm)) +
+  geom_line()
 ```
 
+While the two groups appear to start at similar values, over time the average values for the experimental arm appear to increase while the values for the control arm stay roughly the same. 
 
 # Problem 3
 
