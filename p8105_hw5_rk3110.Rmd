@@ -214,5 +214,7 @@ iris_filled =
   map_df(iris_with_missing, fill_blanks)
 
 iris_filled
+
+sum(is.na(iris_filled))
 ```
 
