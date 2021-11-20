@@ -126,6 +126,8 @@ results_df %>%
 
 # Problem 2
 
+### Import and tidy
+
 ```{r}
 p2_df =
   tibble(
@@ -144,6 +146,11 @@ p2_df =
       values_to = "data"
     ) %>% 
     select(id, arm, week, data) 
+```
+
+### Plotting
+
+```{r}
 
 p2_df %>% 
   ggplot(aes(x = week, y = data, group = id, color = arm)) +
@@ -200,4 +207,12 @@ iris_with_missing %>%
   fill_blanks()
 ```
 
+### Apply function
+
+```{r}
+iris_filled = 
+  map_df(iris_with_missing, fill_blanks)
+
+iris_filled
+```
 
