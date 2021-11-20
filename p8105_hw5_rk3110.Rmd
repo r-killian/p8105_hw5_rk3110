@@ -190,5 +190,14 @@ fill_blanks = function(x) {
 iris_with_missing %>% 
   pull(Sepal.Length) %>% 
   fill_blanks()
+
+iris_with_missing %>% 
+  pull(Sepal.Length) %>% 
+  mean(., na.rm = T)
+
+iris_with_missing %>% 
+  pull(Species) %>% 
+  fill_blanks()
 ```
+
 
